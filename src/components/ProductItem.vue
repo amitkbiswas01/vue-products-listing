@@ -11,15 +11,24 @@
         type="button"
         class="focus:outline-none text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
         :class="buttonClasses"
+        @click="toggleDetailsView"
       >
         {{ isDetailsVisible ? 'Close' : 'Show' }}
       </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">
+      <Transition name="slide">
+        <ProductDetails v-if="isDetailsVisible" :product-id="product.id" />
+      </Transition>
     </td>
   </tr>
 </template>
 
 <script setup lang="ts">
 import { ref, type PropType, computed } from 'vue';
+import ProductDetails from '@/components/ProductDetails.vue';
 
 defineProps({
   product: {
@@ -34,4 +43,23 @@ const buttonClasses = computed(() =>
     ? 'bg-red-700 hover:bg-red-800 focus:ring-red-300'
     : 'bg-green-700 hover:bg-green-800 focus:ring-green-300'
 );
+
+const toggleDetailsView = () => {
+  isDetailsVisible.value = !isDetailsVisible.value;
+};
 </script>
+
+<style scoped>
+.slide-enter-active {
+  transition: all 0.2s linear;
+}
+
+.slide-leave-active {
+  transition: all 0.2s linear;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(-20px);
+}
+</style>

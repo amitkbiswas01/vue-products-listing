@@ -10,3 +10,7 @@ export function getProducts(limit = BASE_PAGINATION_LIMIT, skip = 0): Promise<Pr
       })
   ).then((response) => response.json());
 }
+
+export function getProduct(productId: number): Promise<Product> {
+  return fetch(`${BASE_URL}/${productId}`).then((response) => response.json());
+}
