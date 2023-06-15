@@ -1,9 +1,6 @@
 <template>
   <tr class="bg-white border-b">
     <td class="px-6 py-4">{{ product.id }}</td>
-    <td class="px-6 py-4">
-      <img :src="product.thumbnail" :alt="product.title" loading="lazy" class="w-24 h-auto" />
-    </td>
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
       {{ product.title }}
     </th>

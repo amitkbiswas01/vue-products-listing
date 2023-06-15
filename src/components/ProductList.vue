@@ -13,7 +13,6 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="col" class="px-6 py-3">SI</th>
-            <th scope="col" class="px-6 py-3">Preview</th>
             <th scope="col" class="px-6 py-3">Name</th>
             <th scope="col" class="px-6 py-3">Rating</th>
             <th scope="col" class="px-6 py-3">Price</th>

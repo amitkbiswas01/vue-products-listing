@@ -3,7 +3,7 @@
     <span
       v-if="currentPage"
       class="px-3 py-2 mr-1 leading-tight border cursor-pointer"
-      @click="handlePrevNextButton(currentPage - 1)"
+      @click="changeCurrentPage(currentPage - 1)"
     >
       Previous
     </span>
@@ -19,9 +19,16 @@
     <span
       v-if="currentPage !== numberOfPages"
       class="px-3 py-2 mr-1 leading-tight border cursor-pointer"
-      @click="handlePrevNextButton(currentPage + 1)"
+      @click="changeCurrentPage(currentPage + 1)"
     >
       Next
+    </span>
+    <span
+      v-if="currentPage !== numberOfPages"
+      class="px-3 py-2 mr-1 leading-tight border cursor-pointer"
+      @click="changeCurrentPage(numberOfPages)"
+    >
+      Last
     </span>
   </div>
 </template>
@@ -42,7 +49,7 @@ const props = defineProps({
 });
 const emits = defineEmits(['change-page']);
 
-const paginatorEntries = ref<Number[]>([1, 2, 3, 4]);
+const paginatorEntries = ref<number[]>([1, 2, 3, 4]);
 const numberOfPages = ref(Math.ceil(props.total / BASE_PAGINATION_LIMIT) - 1);
 
 onMounted(() => {
@@ -65,7 +72,7 @@ const updatePaginatorList = () => {
   if (props.currentPage === numberOfPages.value) paginatorEntries.value.pop();
 };
 
-const handlePrevNextButton = (newPage: number) => {
+const changeCurrentPage = (newPage: number) => {
   emits('change-page', newPage);
   updatePaginatorList();
 };
