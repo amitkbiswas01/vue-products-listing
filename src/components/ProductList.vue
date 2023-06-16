@@ -11,7 +11,7 @@
     </div>
     <ErrorAlert
       v-if="isError && !isErrorAlertClosed"
-      :error="error"
+      :error-msg="error as string"
       @close="isErrorAlertClosed = true"
     />
     <div v-if="isLoading" class="w-full my-16 flex justify-center">
@@ -33,7 +33,7 @@
         </tbody>
       </table>
       <ProductPagination
-        :total="data?.total"
+        :total="data?.total ?? 0"
         :currentPage="currentPage"
         @change-page="changeCurrentPage"
       />
@@ -53,14 +53,14 @@ import ProductFilter from '@/components/ProductFilter.vue';
 import ProductPagination from '@/components/ProductPagination.vue';
 
 const isErrorAlertClosed = ref(true);
-const currentPage = ref(0);
+const currentPage = ref(1);
 const products = ref<Product[] | undefined>([]);
 const sorting = ref<SortingType | null>(null);
 const filter = ref<FilterType | null>(null);
 
 const { isLoading, isError, data, error } = useQuery({
   queryKey: ['products', currentPage],
-  queryFn: () => getProducts(BASE_PAGINATION_LIMIT, BASE_PAGINATION_LIMIT * currentPage.value)
+  queryFn: () => getProducts(BASE_PAGINATION_LIMIT, BASE_PAGINATION_LIMIT * (currentPage.value - 1))
 });
 
 watch(data, () => {
