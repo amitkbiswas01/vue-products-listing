@@ -17,13 +17,13 @@
       </button>
     </td>
   </tr>
-  <tr>
-    <td colspan="5">
-      <Transition name="slide">
-        <ProductDetails v-if="isDetailsVisible" :product-id="product.id" />
-      </Transition>
-    </td>
-  </tr>
+  <Transition name="slide">
+    <tr v-if="isDetailsVisible">
+      <td colspan="5">
+        <ProductDetails :product-id="product.id" />
+      </td>
+    </tr>
+  </Transition>
 </template>
 
 <script setup lang="ts">
