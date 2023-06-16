@@ -4,7 +4,7 @@
     role="alert"
   >
     <strong class="font-bold mr-1">Seems like the following error has occurred!</strong>
-    <span class="block sm:inline">{{ errorMsg }}</span>
+    <span class="block sm:inline">{{ error }}</span>
     <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
       <svg
         class="fill-current h-6 w-6 text-red-500"
@@ -22,12 +22,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  errorMsg: {
+defineProps({
+  error: {
     type: String,
     default: "Something's Wrong!"
   }
 });
-
-console.log(props.errorMsg);
 </script>

@@ -11,7 +11,7 @@
     </div>
     <ErrorAlert
       v-if="isError && !isErrorAlertClosed"
-      :errorMsg="error"
+      :error="error"
       @close="isErrorAlertClosed = true"
     />
     <div v-if="isLoading" class="w-full my-16 flex justify-center">
